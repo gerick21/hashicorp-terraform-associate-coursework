@@ -4,6 +4,7 @@
 # .tfstate files (contains sensitive infrastructure details)
 *.tfstate
 *.tfstate.*
+.terraform.lock.hcl
 
 # Crash logs
 crash.log
@@ -14,3 +15,4 @@ crash.log
 
 
 .history/
+

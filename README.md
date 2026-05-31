@@ -13,13 +13,14 @@ Welcome to my hands-on laboratory and study workspace for the **HashiCorp Certif
 ## 🛠️ Tech Stack & Environment
 
 - **IaC Tool:** Terraform v1.5.0+
-- **Cloud Provider:** AWS (Amazon Web Services)
+- **Cloud Provider:** AWS (Amazon Web Services) & Third-Party Providers (GitHub)
 - **Shell/OS:** Windows PowerShell / Command Prompt
 - **Course Resource:** Bryan Krausen (Udemy)
 
 ## 📂 Repository Structure
 
 - `/01-hcl-basics` - Basic blocks, arguments, resources, and data sources.
+- `/02-terraform-cli` - Deep dive into terraform cli, basic comands, init,plan,apply,destroy.
 - _(More modules will be added as the course progresses)_
 
 ---
