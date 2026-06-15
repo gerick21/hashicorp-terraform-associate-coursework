@@ -86,5 +86,6 @@ resource "aws_security_group" "example" {
   tags = {
     Name        = "example-security-group"
     Environment = var.environment
+    Owner       = "terraform-course-gerick"
   }
 }
