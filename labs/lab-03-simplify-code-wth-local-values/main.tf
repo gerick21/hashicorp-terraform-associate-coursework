@@ -17,20 +17,19 @@ locals {
   name_prefix = "${var.environment}-"
 }
 
-# Static configuration with repetitive elements
 resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
 
   tags = {
-    Name        = "production-vpc-us-east-1"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}vpc-${data.aws_region.current.region}" # <-- update value here
+    Environment = local.tags.Environment                                      # <-- update value here
+    Project     = local.tags.Project                                          # <-- update value here
+    Owner       = local.tags.Owner                                            # <-- update value here
+    CostCenter  = local.tags.CostCenter                                       # <-- update value here
+    Region      = local.tags.Region                                           # <-- update value here
+    ManagedBy   = local.tags.ManagedBy                                        # <-- update value here
   }
 }
 
@@ -41,13 +40,13 @@ resource "aws_subnet" "public_a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name        = "production-public-subnet-us-east-1a"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}public-subnet-us-east-1a" # <-- update value here
+    Environment = local.tags.Environment                         # <-- update value here
+    Project     = local.tags.Project                             # <-- update value here
+    Owner       = local.tags.Owner                               # <-- update value here
+    CostCenter  = local.tags.CostCenter                          # <-- update value here
+    Region      = local.tags.Region                              # <-- update value here
+    ManagedBy   = local.tags.ManagedBy                           # <-- update value here
     Tier        = "public"
   }
 }
@@ -59,13 +58,13 @@ resource "aws_subnet" "public_b" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name        = "production-public-subnet-us-east-1b"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}public-subnet-us-east-1b" # <-- update value here
+    Environment = local.tags.Environment                         # <-- update value here
+    Project     = local.tags.Project                             # <-- update value here
+    Owner       = local.tags.Owner                               # <-- update value here
+    CostCenter  = local.tags.CostCenter                          # <-- update value here
+    Region      = local.tags.Region                              # <-- update value here
+    ManagedBy   = local.tags.ManagedBy                           # <-- update value here
     Tier        = "public"
   }
 }
@@ -77,13 +76,13 @@ resource "aws_subnet" "private_a" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name        = "production-private-subnet-us-east-1a"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}private-subnet-us-east-1a" # <-- update value here
+    Environment = local.tags.Environment                          # <-- update value here
+    Project     = local.tags.Project                              # <-- update value here
+    Owner       = local.tags.Owner                                # <-- update value here
+    CostCenter  = local.tags.CostCenter                           # <-- update value here
+    Region      = local.tags.Region                               # <-- update value here
+    ManagedBy   = local.tags.ManagedBy                            # <-- update value here
     Tier        = "private"
   }
 }
@@ -95,19 +94,19 @@ resource "aws_subnet" "private_b" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name        = "production-private-subnet-us-east-1b"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}private-subnet-us-east-1b" # <-- update value here
+    Environment = local.tags.Environment                          # <-- update value here
+    Project     = local.tags.Project                              # <-- update value here
+    Owner       = local.tags.Owner                                # <-- update value here
+    CostCenter  = local.tags.CostCenter                           # <-- update value here
+    Region      = local.tags.Region                               # <-- update value here
+    ManagedBy   = local.tags.ManagedBy                            # <-- update value here
     Tier        = "private"
   }
 }
 
 resource "aws_security_group" "web" {
-  name        = "production-web-sg"
+  name        = "${local.name_prefix}web-sg" # <-- update value here
   description = "Allow web traffic"
   vpc_id      = aws_vpc.main.id
 
@@ -133,12 +132,12 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name        = "production-web-sg"
-    Environment = "production"
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
-    Region      = "us-east-1"
-    ManagedBy   = "terraform"
+    Name        = "${local.name_prefix}web-sg" # <-- update value here
+    Environment = local.tags.Environment       # <-- update value here
+    Project     = local.tags.Project           # <-- update value here
+    Owner       = local.tags.Owner             # <-- update value here
+    CostCenter  = local.tags.CostCenter        # <-- update value here
+    Region      = local.tags.Region            # <-- update value here
+    ManagedBy   = local.tags.ManagedBy         # <-- update value here
   }
 }
