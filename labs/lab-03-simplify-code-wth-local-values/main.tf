@@ -6,15 +6,15 @@ locals {
   # Common tags for all resources
   tags = {
     Environment = var.environment
-    Project     = "terraform-demo"
-    Owner       = "infrastructure-team"
-    CostCenter  = "cc-1234"
+    Project     = "terraform-improved-demo"
+    Owner       = "devops-team"
+    CostCenter  = "cc-5678"
     Region      = data.aws_region.current.region
     ManagedBy   = "terraform"
   }
 
   # Common name prefix for resources
-  name_prefix = "${var.environment}-"
+  name_prefix = "${var.environment}-tf"
 }
 
 resource "aws_vpc" "main" {
