@@ -13,4 +13,12 @@ module "subnet_module" {
   availability_zone = "us-east-1a"
 }
 
+module "prod-workload" {
+  source        = "./modules/ec2"
+  vpc_id        = module.vpc.vpc_id
+  subnet_id     = module.subnet_module.subnet_id
+  ami_id        = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  instance_name = "my-terraform-instance"
 
+}
