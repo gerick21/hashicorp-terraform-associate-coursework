@@ -7,6 +7,16 @@ terraform {
   }
 
   required_version = "1.12.2"
+
+  cloud {
+
+    organization = "gerick-hcp"
+
+    workspaces {
+      name = "hcp-demo"
+    }
+
+  }
 }
 
 provider "aws" {
